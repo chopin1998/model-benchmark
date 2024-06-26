@@ -1,0 +1,18 @@
+#info-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+#setting-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 30px;
+}
+.info-ms {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: lightblue;
+}
+
