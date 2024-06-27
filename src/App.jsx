@@ -94,7 +94,7 @@ function App() {
 
       <div id='setting-container'>
           <div>
-            <label htmlFor="device-selector">Device:</label>
+            <label htmlFor="device-selector">Backend:</label>
             <select name="device-selector" ref={deviceRef}>
               <option value="webgpu">webGPU</option>
               <option value="wasm">Wasm(cpu)</option>
@@ -105,7 +105,7 @@ function App() {
             <select name="model-selector" ref={modelRef}>
               <option value="yolov9-t-converted-simplify">yolov9-t</option>
               <option value="yolov9-s-converted-simplify">yolov9-s</option>
-              <option value="gelan-s2">gelan-s2</option>
+              <option value="gelan-s2-simplify">gelan-s2</option>
               <option value="yolov10n">yolov10-n</option>
               <option value="yolov10s">yolov10-s</option>
             </select>
@@ -114,11 +114,11 @@ function App() {
 
           <div>
             <label htmlFor="warmUpFrequency-input">Warm up frequency:</label>
-            <input type="number" id='warmUpFrequency-input' defaultValue={1} ref={warmUpFrequencyRef}/>
+            <input type="number" id='warmUpFrequency-input' defaultValue={1} min={0} ref={warmUpFrequencyRef}/>
           </div>
           <div>
             <label htmlFor="testFrequency-input">Testing frequency:</label>
-            <input type="number" id='testFrequency-input' defaultValue={100} ref={testFrequencyRef}/>
+            <input type="number" id='testFrequency-input' defaultValue={100} min={0} ref={testFrequencyRef}/>
           </div>
       </div>
 

@@ -23,7 +23,7 @@ export async function inference(
     let totalTestTime = 0; 
 
     // load model
-    const onnxSession = await ort.InferenceSession.create(model_path, 
+    const onnxSession = await ort.InferenceSession.create(`${window.location.href}${model_path}`, 
         {executionProviders: [device]}
     );
     // if set wasm 
