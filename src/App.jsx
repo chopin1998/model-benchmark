@@ -63,7 +63,7 @@ function App() {
   // start benchmark button click
   const startBenchmark = async () => {
     startBenchmarkRef.current.disabled = true;
-    
+
     // Reset chart data and labels and Reset Avg time
     benchmarkRef.current.data.labels = [];
     benchmarkRef.current.data.datasets[0].data = [];
@@ -71,12 +71,13 @@ function App() {
     setTestAvgTime('0');
 
     // config
-    const input_shape = [1, 3, 640, 640];
+    // const input_shape = [1, 3, 640, 640];
+    const input_shape = [1, 3, 256, 192];
     const model_path = `/${modelRef.current.value}.onnx`
 
     await inference(
-      model_path, 
-      input_shape, 
+      model_path,
+      input_shape,
       deviceRef.current.value,
       Number(warmUpFrequencyRef.current.value),
       Number(testFrequencyRef.current.value),
@@ -90,36 +91,40 @@ function App() {
 
   return (
     <>
-      <h1>Model Benchmark - onnxruntime Web</h1>
+      <h1>model benchmark</h1>
+      <h2><font color="blue"><b>webGPU</b></font> pk <font color="red">WASM</font></h2>
 
       <div id='setting-container'>
-          <div>
-            <label htmlFor="device-selector">Backend:</label>
-            <select name="device-selector" ref={deviceRef}>
-              <option value="webgpu">webGPU</option>
-              <option value="wasm">Wasm(cpu)</option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="model-selector">Model:</label>
-            <select name="model-selector" ref={modelRef}>
-              <option value="yolov9-t-converted-simplify">yolov9-t</option>
+        <div>
+          <label htmlFor="device-selector">backend:</label>
+          <select name="device-selector" ref={deviceRef}>
+            <option value="webgpu">WebGPU</option>
+            <option value="wasm">WASM</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="model-selector">model:</label>
+          <select name="model-selector" ref={modelRef}>
+            {/* <option value="yolov8n-pose">body pose tiny</option>
+            <option value="yolov8s-pose">body pose small</option> */}
+            <option value="rtmpose-m-orig">rtmpose-t</option>
+            {/* <option value="yolov9-t-converted-simplify">yolov9-t</option>
               <option value="yolov9-s-converted-simplify">yolov9-s</option>
               <option value="gelan-s2-simplify">gelan-s2</option>
               <option value="yolov10n">yolov10-n</option>
-              <option value="yolov10s">yolov10-s</option>
-            </select>
-            <p>Yolov10 only support wasm</p>
-          </div>
+              <option value="yolov10s">yolov10-s</option> */}
+          </select>
+          {/* <p>Yolov10 only support wasm</p> */}
+        </div>
 
-          <div>
-            <label htmlFor="warmUpFrequency-input">Warm up frequency:</label>
-            <input type="number" id='warmUpFrequency-input' defaultValue={1} min={0} ref={warmUpFrequencyRef}/>
-          </div>
-          <div>
-            <label htmlFor="testFrequency-input">Testing frequency:</label>
-            <input type="number" id='testFrequency-input' defaultValue={100} min={0} ref={testFrequencyRef}/>
-          </div>
+        <div>
+          <label htmlFor="warmUpFrequency-input">warm up count:</label>
+          <input type="number" id='warmUpFrequency-input' defaultValue={1} min={0} ref={warmUpFrequencyRef} />
+        </div>
+        <div>
+          <label htmlFor="testFrequency-input">bench count:</label>
+          <input type="number" id='testFrequency-input' defaultValue={10} min={0} ref={testFrequencyRef} />
+        </div>
       </div>
 
       <button onClick={startBenchmark} ref={startBenchmarkRef}>Start benchmark</button>
@@ -130,7 +135,7 @@ function App() {
         </p>
         <p>
           Inference Average Time: <span className='info-ms'>{testAvgTime}ms</span>
-        </p> 
+        </p>
       </div>
       <canvas ref={chartRef}></canvas>
     </>
