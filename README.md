@@ -2,7 +2,7 @@
 
 power by onnxruntime web.
 
-# USAGE
+## USAGE
 
 * copy onnx model to public/, modify in App.jsx
 
