@@ -105,14 +105,9 @@ function App() {
         <div>
           <label htmlFor="model-selector">model:</label>
           <select name="model-selector" ref={modelRef}>
-            {/* <option value="yolov8n-pose">body pose tiny</option>
-            <option value="yolov8s-pose">body pose small</option> */}
-            <option value="rtmpose-m-orig">rtmpose-t</option>
-            {/* <option value="yolov9-t-converted-simplify">yolov9-t</option>
-              <option value="yolov9-s-converted-simplify">yolov9-s</option>
-              <option value="gelan-s2-simplify">gelan-s2</option>
-              <option value="yolov10n">yolov10-n</option>
-              <option value="yolov10s">yolov10-s</option> */}
+            {
+              <><option value="rtmpose-m-orig">rtmpose-t</option></>
+            }
           </select>
           {/* <p>Yolov10 only support wasm</p> */}
         </div>
