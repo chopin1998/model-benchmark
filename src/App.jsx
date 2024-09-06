@@ -71,8 +71,8 @@ function App() {
     setTestAvgTime('0');
 
     // config
-    // const input_shape = [1, 3, 640, 640];
-    const input_shape = [1, 3, 256, 192];
+    const input_shape = [1, 3, 640, 640];
+    // const input_shape = [1, 3, 256, 192];
     const model_path = `/${modelRef.current.value}.onnx`
 
     await inference(
@@ -106,7 +106,10 @@ function App() {
           <label htmlFor="model-selector">model:</label>
           <select name="model-selector" ref={modelRef}>
             {
-              <><option value="rtmpose-m-orig">rtmpose-t</option></>
+              <>
+                <option value="yolov8s-pose">yolov8s-pose</option>
+                <option value="rtmpose-m-orig">rtmpose-t</option>
+              </>
             }
           </select>
           {/* <p>Yolov10 only support wasm</p> */}

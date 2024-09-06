@@ -37,8 +37,11 @@ export async function inference(
             input_shape
         );
         const startTime = performance.now();
-        await onnxSession.run({ input: dummy_input_tensor }); // images
+        const output = await onnxSession.run({ images: dummy_input_tensor }); // images
         const endTime = performance.now();
+
+        console.log("output", output);
+        
         return endTime - startTime;
     }
 
